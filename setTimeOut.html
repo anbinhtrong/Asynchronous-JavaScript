@@ -1,0 +1,44 @@
+<html>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<head>
+        <title>WebSocket Client</title>
+        <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" />
+    </head>
+    <body>
+    	<div class="container">    	
+    		<div class="row">
+    			<h1>Asynchonous Test</h1>
+    			<button id='do' class="btn btn-primary"> Do long calc!</button>
+				<div id='status'></div>
+				<div id='result'></div>
+    		</div>
+    	</div>
+    	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    	<script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    	<script type="text/javascript">
+    		$(document).ready(function(){
+    			$('#do').on('click', function(){
+ 
+					$('#status').text('calculating....');				 
+					// without set timeout, user will never see "calculating...."
+					//long();
+					// with set timeout, works as expected
+					setTimeout(long,0)				 
+					});
+    		});
+    		
+				 
+			function long(){
+				var result = 0
+				for (var i = 0; i<1000; i++){
+					for (var j = 0; j<1000; j++){
+						for (var k = 0; k<1000; k++){
+							result = result + i+j+k
+						}
+					}
+				}
+				$('#status').text('calclation done'); // has to be in here for this example. or else it will ALWAYS run instantly. This is the same as passing it a callback
+			}
+    	</script>
+    </body>
+</html>
